@@ -6,7 +6,7 @@ var fs = require('fs');
 const server = http.createServer((req, res) => {
     
 
-    if (req.url === "/index") {
+    if (req.url === "/cool") {
         fs.readFile("index.html", (err, data) => {
             if (err) {
                 res.writeHead(404);
