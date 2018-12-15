@@ -7,7 +7,7 @@ const server = http.createServer((req, res) => {
     
 
     if (req.url === "/cool") {
-        fs.readFile("index.html", (err, data) => {
+        fs.readFile("cool.html", (err, data) => {
             if (err) {
                 res.writeHead(404);
                 res.write("Not Found!");
