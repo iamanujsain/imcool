@@ -1,28 +1,16 @@
-const http = require('http');
-const port = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
 
-var fs = require('fs');
-
-const server = http.createServer((req, res) => {
-    
-
-    if (req.url === "/cool") {
-        fs.readFile("cool.html", (err, data) => {
-            if (err) {
-                res.writeHead(404);
-                res.write("Not Found!");
-            } else {
-                res.writeHead(200, {'Content-Type': 'text/html'});
-                res.write(data);
-                res.end();
-            }
-        });
-    } else {
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.end('<h1>This is the default response!</h1>');
-    }
+app.get('/', (req, res) => {
+    res.end("This is the default response.");
 });
-server.listen(port, () => {
-    console.log('Server running at port ' + port);
-})
+
+app.get('/cool', (req, res) => {
+    res.sendFile("cool.html", {root: __dirname});
+});
+
+app.get('/xmas', (req, res) => {
+    res.sendFile("xmas.html", {root: __dirname});
+});
+
+app.listen(3000);
